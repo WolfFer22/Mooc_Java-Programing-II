@@ -9,4 +9,5 @@ public class Main {
         System.out.println(d.equals(new SimpleDate(5, 2, 2012)));
         System.out.println(d.equals(new SimpleDate(1, 2, 2000)));
     }
+    
 }

@@ -5,8 +5,7 @@ public class Cubes {
 
     public static void main(String[] args) {
         
-        Scanner scanner = new Scanner(System.in);
-        
+        Scanner scanner = new Scanner(System.in);        
         
         while(true) {            
             String input = scanner.nextLine();

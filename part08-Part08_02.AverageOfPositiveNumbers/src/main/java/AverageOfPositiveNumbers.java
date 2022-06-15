@@ -29,6 +29,5 @@ public class AverageOfPositiveNumbers {
             average = 1.0 * sum / count;
             System.out.println(average);
         }
-
     }
 }

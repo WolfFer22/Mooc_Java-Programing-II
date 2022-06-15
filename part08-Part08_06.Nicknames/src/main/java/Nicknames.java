@@ -15,5 +15,4 @@ public class Nicknames {
         
         System.out.println(names.get("Matthew"));
     }
-
 }
