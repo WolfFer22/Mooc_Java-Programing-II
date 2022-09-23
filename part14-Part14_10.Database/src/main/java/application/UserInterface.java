@@ -13,7 +13,7 @@ public class UserInterface {
         this.database = database;
     }
 
-    public void start() throws SQLException {
+    public void start() throws SQLException {        
         while (true) {
             System.out.println("");
             System.out.println("Enter command:");
@@ -25,14 +25,43 @@ public class UserInterface {
 
             System.out.print("> ");
             String command = this.scanner.nextLine();
-            if (command.equals("x")) {
-                break;
+            
+            if (command.equals("x")){
+                System.out.println("Thank you!");
+                break; 
             }
+            if (command.equals("1")) {
+                System.out.println("Listing the database contents");                
+                System.out.println(this.database.list().toString());
+            }  
+            
+            if (command.equals("2")){     
+                System.out.println("Adding a new todo");
+                
+                System.out.println("Enter name");
+                String name = scanner.nextLine();   
+                System.out.println("Enter description");
+                String description = scanner.nextLine();
+                
+                Todo todo = new Todo(name, description, false);
 
-            // implement the functionality here
-        }
-
-        System.out.println("Thank you!");
+                this.database.add(todo);
+            }  
+            
+            if (command.equals("3")) {
+                System.out.println("Which todo should be marked as done (give the id)?");
+                int id = Integer.valueOf(scanner.nextLine());
+                
+                this.database.markAsDone(id);
+            }  
+            
+            if (command.equals("4")) {
+                System.out.println("Which todo should be removed (give the id)?");
+                int id = Integer.valueOf(scanner.nextLine());
+                
+                this.database.remove(id);
+            }                    
+        }        
     }
-
+    
 }

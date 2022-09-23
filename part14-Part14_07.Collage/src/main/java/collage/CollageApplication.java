@@ -28,33 +28,51 @@ public class CollageApplication extends Application {
 
         WritableImage targetImage = new WritableImage(width, height);
         PixelWriter imageWriter = targetImage.getPixelWriter();
-
+        
         int yCoordinate = 0;
         while (yCoordinate < height) {
             int xCoordinate = 0;
             while (xCoordinate < width) {
 
                 Color color = imageReader.getColor(xCoordinate, yCoordinate);
-                double red = color.getRed();
-                double green = color.getGreen();
-                double blue = color.getBlue();
+                double red = 1.0 - color.getRed();
+                double green = 1.0 - color.getGreen();
+                double blue = 1.0 - color.getBlue();
                 double opacity = color.getOpacity();
 
-                Color newColor = new Color(red, green, blue, opacity);
+                Color newColor = new Color(red, green, blue, opacity);              
 
-                imageWriter.setColor(xCoordinate, yCoordinate, newColor);
+                //imageWriter.setColor(xCoordinate, yCoordinate, newColor);                     
+                
+                int xCoordinate1 = xCoordinate / 2;
+                int yCoordinate1 = yCoordinate / 2;                    
+                imageWriter.setColor(xCoordinate1, yCoordinate1, newColor);
 
-                xCoordinate++;
+                int xCoordinate2 = xCoordinate1 + (width / 2);
+                int yCoordinate2 = yCoordinate1;                    
+                imageWriter.setColor(xCoordinate2, yCoordinate2, newColor);
+
+                int xCoordinate3 = xCoordinate1;
+                int yCoordinate3 = yCoordinate1 + (height / 2);                    
+                imageWriter.setColor(xCoordinate3, yCoordinate3, newColor);
+
+                int xCoordinate4 = xCoordinate2;
+                int yCoordinate4 = yCoordinate3;                    
+                imageWriter.setColor(xCoordinate4, yCoordinate4, newColor);
+
+                xCoordinate += 2;
+                //xCoordinate++;
             }
 
-            yCoordinate++;
+            yCoordinate += 2;
+            //yCoordinate++;
         }
 
-        ImageView image = new ImageView(targetImage);
+        ImageView image = new ImageView(targetImage);      
 
         Pane pane = new Pane();
         pane.getChildren().add(image);
-
+        
         stage.setScene(new Scene(pane));
         stage.show();
     }
